@@ -7,7 +7,18 @@ import scipy.stats as stat
 # Model = np.linspace(0, 1, 100)
 
 
-def runLoop(Theta = np.array([0.1, 0.2]),  pTheta = np.array([0.5, 0.5]), nLoop=1000, plotSpace = 10):
+def runLoop(Theta = np.array([0.1, 0.2]),  pTheta = np.array([0.5, 0.5]), nLoop=10, plotSpace = 2):
+    """
+    Plots prior, likelihood and posterior probability over nLoop draws. 
+    Each draw does NOT updates the prior probability.  Old data is kept and
+    the posterior and likelihood are computed from the initial priors and 
+    cumulative data
+
+    :Theta: array of possible outcomes
+    :pTheta: array of prior probabilities of outcomes
+    :nLoop: number of trials to run
+    :plotSpace: number of trials between plot updates
+    """
     # Dr. Lynch's two models 
     # 10% Green skittles
     # 20% Green skittles
@@ -100,7 +111,17 @@ def runLoop(Theta = np.array([0.1, 0.2]),  pTheta = np.array([0.5, 0.5]), nLoop=
     plt.show()
 
 
-def runLoop_2(Theta = np.array([0.1, 0.2]),  pTheta = np.array([0.5, 0.5]), nLoop=1000, plotSpace = 10):
+def runLoop_2(Theta = np.array([0.1, 0.2]),  pTheta = np.array([0.5, 0.5]), nLoop=10, plotSpace = 1):
+    """
+    Plots prior, likelihood and posterior probability over nLoop draws. 
+    Each draw updates the prior probability i.e. prior = posterior and 
+    clears the 'old' data
+    
+    :Theta: array of possible outcomes
+    :pTheta: array of prior probabilities of outcomes
+    :nLoop: number of trials to run
+    :plotSpace: number of trials between plot updates
+    """
     # Dr. Lynch's two models 
     # 10% Green skittles
     # 20% Green skittles
