@@ -89,7 +89,7 @@ def runLoop(Theta = np.array([0.1, 0.2]),  pTheta = np.array([0.5, 0.5]), nLoop=
     # Use Bayes' rule!
     pThetaGivenData = pDataGivenTheta * pTheta / pData   
     checkNorm = sum(pThetaGivenData)
-    hBins = np.linspace(0,1, 100)
+    hBins = np.linspace(0,1, 101)
     fig = plt.figure()
     ax1 = fig.add_subplot(3,1,1)
     ax1.hist(Theta, weights = pTheta0, bins = hBins, alpha = 0.4, label = "Prior")
