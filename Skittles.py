@@ -89,7 +89,6 @@ def runLoop(Theta = np.array([0.1, 0.2]),  pTheta = np.array([0.5, 0.5]), nLoop=
     # Use Bayes' rule!
     pThetaGivenData = pDataGivenTheta * pTheta / pData   
     checkNorm = sum(pThetaGivenData)
-    pTheta = pThetaGivenData
     hBins = np.linspace(0,1, 100)
     fig = plt.figure()
     ax1 = fig.add_subplot(3,1,1)
@@ -192,7 +191,6 @@ def runLoop_2(Theta = np.array([0.1, 0.2]),  pTheta = np.array([0.5, 0.5]), nLoo
     # Use Bayes' rule!
     pThetaGivenData = pDataGivenTheta * pTheta / pData   
     checkNorm = sum(pThetaGivenData)
-    pTheta = pThetaGivenData
     hBins = np.linspace(0,1, 100)
     fig = plt.figure()
     ax1 = fig.add_subplot(3,1,1)
@@ -212,6 +210,7 @@ def runLoop_2(Theta = np.array([0.1, 0.2]),  pTheta = np.array([0.5, 0.5]), nLoo
     ax4.legend()
     plt.xlim(0, 1)
     plt.show()
+    pTheta = pThetaGivenData
 
 def SingleShot(N):
     # Dr. Lynch's two models 
