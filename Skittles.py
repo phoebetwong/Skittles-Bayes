@@ -48,7 +48,7 @@ def runLoop(Theta = np.array([0.1, 0.2]),  pTheta = np.array([0.5, 0.5]), nLoop=
         nGreens = np.sum( data )
         nOther = len( data ) - nGreens
         if i % plotSpace == 0:
-            print "Number of green Skittles in this bag: ", nGreens
+            print "Cumulative number of green Skittles: ", nGreens
             # I've left out the factor of N choose nGreen that is common 
             # to pData and pDataGivenTheta
                         
@@ -80,8 +80,8 @@ def runLoop(Theta = np.array([0.1, 0.2]),  pTheta = np.array([0.5, 0.5]), nLoop=
             plt.xlim(0, 1)
             plt.show()
             #pTheta = pThetaGivenData
-    print(pTheta)
-    print "Number of green Skittles in this bag: ", nGreens
+
+    print "Cumulative number of green Skittles: ", nGreens
     # Compute the likelihood of the data for each value of theta:
     pDataGivenTheta = Theta**nGreens * (1-Theta)**nOther
     # Compute the posterior:
@@ -138,7 +138,7 @@ def runLoop_2(Theta = np.array([0.1, 0.2]),  pTheta = np.array([0.5, 0.5]), nLoo
     print (pTheta)
     
     data = []
-
+    cumulativeG = 0
     for i in range(0, nLoop):
         bagV = np.random.uniform(0,1)
 
@@ -150,8 +150,8 @@ def runLoop_2(Theta = np.array([0.1, 0.2]),  pTheta = np.array([0.5, 0.5]), nLoo
             plotSpace = int(plotSpace)
             nGreens = np.sum( data )
             nOther = len( data ) - nGreens
-
-            print "Number of green Skittles in this bag: ", nGreens
+            cumulativeG += nGreens
+            print "Number of green Skittles in this bag of ", plotSpace ,  " = ", nGreens
             # I've left out the factor of N choose nGreen that is common 
             # to pData and pDataGivenTheta                        
             # Compute the likelihood of the data for each value of theta:
@@ -161,7 +161,7 @@ def runLoop_2(Theta = np.array([0.1, 0.2]),  pTheta = np.array([0.5, 0.5]), nLoo
             # Use Bayes' rule!
             pThetaGivenData = pDataGivenTheta * pTheta / pData   
             checkNorm = sum(pThetaGivenData)
-            hBins = np.linspace(0,1, 100)
+            hBins = np.linspace(0,1, 101)
             fig = plt.figure()
             ax1 = fig.add_subplot(4,1,1)
             ax1.hist(Theta, weights = pTheta0, bins = hBins, alpha = 0.4, label = "Starting Prior")
@@ -182,8 +182,8 @@ def runLoop_2(Theta = np.array([0.1, 0.2]),  pTheta = np.array([0.5, 0.5]), nLoo
             plt.show()
             pTheta = pThetaGivenData
             data = []
-    print(pTheta)
     print "Number of green Skittles in this bag: ", nGreens
+    print "Total number of green skittles found: ", cumulativeG
     # Compute the likelihood of the data for each value of theta:
     pDataGivenTheta = Theta**nGreens * (1-Theta)**nOther
     # Compute the posterior:
@@ -243,4 +243,4 @@ def SingleShot(N):
     pThetaGivenData = pDataGivenTheta * pTheta / pData   
     checkNorm = sum(pThetaGivenData)
     pTheta = pThetaGivenData
-    print pTheta
+    
