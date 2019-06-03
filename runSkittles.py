@@ -16,3 +16,5 @@ runLoop_2(Model1, prior1, 10, 1)
 
 #Update prob using last 5 draws
 runLoop_2(Model1, prior1, 10, 5)
+
+#boo
